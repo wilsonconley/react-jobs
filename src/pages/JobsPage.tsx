@@ -1,5 +1,7 @@
+import JobListings from "../components/JobListings";
+
 function JobsPage() {
-  return <div>Jobs Page</div>;
+  return <JobListings isHome={false} />;
 }
 
 export default JobsPage;
