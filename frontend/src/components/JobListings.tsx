@@ -6,7 +6,7 @@ interface Props {
   isHome?: boolean;
 }
 
-function JobListings({ isHome = false }: Props) {
+function JobListings({ isHome = true }: Props) {
   const listings = isHome ? jobs.slice(0, 3) : jobs;
 
   return (
