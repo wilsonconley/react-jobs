@@ -6,7 +6,7 @@ interface Props {
   job: Job;
 }
 
-interface Job {
+export interface Job {
   id: string;
   title: string;
   type: string;

@@ -11,6 +11,6 @@ app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
 });
 
-app.get("/", (req, res) => {
+app.get("/jobs", (req, res) => {
   res.json(data);
 });
