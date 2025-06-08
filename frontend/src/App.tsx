@@ -7,7 +7,7 @@ import {
 import HomePage from "./pages/HomePage";
 import MainLayout from "./layouts/MainLayout";
 import JobsPage from "./pages/JobsPage";
-import JobPage, { jobLoader } from "./pages/JobPage";
+import JobPage from "./pages/JobPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import AddJobPage from "./pages/AddJobPage";
 import EditJobPage from "./pages/EditJobPage";
@@ -44,6 +44,13 @@ function App() {
     });
     console.log("Deleted job", id);
     return;
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const jobLoader = async ({ params }: { params: any }) => {
+    const res = await fetch(`/api/jobs/${params.id}`);
+    const data = await res.json();
+    return data;
   };
 
   const router = createBrowserRouter(
