@@ -1,0 +1,7 @@
+version: "3"
+
+tasks:
+  lint:
+    desc: Run lint
+    cmds:
+      - npm run lint

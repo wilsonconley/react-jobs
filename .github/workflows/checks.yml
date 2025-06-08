@@ -1,0 +1,24 @@
+name: Checks
+
+on: [push]
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      - name: Set up node
+        run: |
+          # Download and install nvm:
+          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+          # in lieu of restarting the shell
+          \. "$HOME/.nvm/nvm.sh"
+          # Download and install Node.js:
+          nvm install 22
+      - name: Set up task
+        run: |
+          sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d
+      - name: Run checks
+        run: |
+          ./bin/task check
