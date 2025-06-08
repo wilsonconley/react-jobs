@@ -1,6 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 import { FaArrowLeft, FaMapMarker } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import type { Job } from "../components/JobListing";
 
 interface Props {
@@ -16,6 +17,9 @@ function JobPage({ deleteJob }: Props) {
     const confirm = window.confirm("Are you sure?");
     if (!confirm) return;
     deleteJob(id);
+
+    toast.success("Job deleted successfully.");
+
     return navigate("/jobs");
   };
 
@@ -93,7 +97,10 @@ function JobPage({ deleteJob }: Props) {
                 </Link>
                 <button
                   className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline mt-4 block"
-                  onClick={() => handleDelete(job.id)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleDelete(job.id);
+                  }}
                 >
                   Delete Job
                 </button>
