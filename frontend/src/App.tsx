@@ -43,7 +43,10 @@ function App() {
           element={<JobPage deleteJob={deleteJob} />}
           loader={jobLoader}
         />
-        <Route path="/add-job" element={<AddJobPage addJobSubmit={addJob} />} />
+        <Route
+          path="/jobs/add"
+          element={<AddJobPage addJobSubmit={addJob} />}
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
     )
