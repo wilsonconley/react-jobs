@@ -16,6 +16,9 @@ jobs:
           \. "$HOME/.nvm/nvm.sh"
           # Download and install Node.js:
           nvm install 22
+      - name: Install deps
+        run: |
+          npm run install-all
       - name: Set up task
         run: |
           sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d
