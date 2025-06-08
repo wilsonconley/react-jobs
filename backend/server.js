@@ -25,6 +25,12 @@ app.get("/jobs/:id", (req, res) => {
   res.json(data.find((el) => el.id === id));
 });
 
+app.delete("/jobs/:id", (req, res) => {
+  const id = req.params.id;
+  data = data.filter((job) => job.id !== id);
+  res.sendStatus(204);
+});
+
 app.post("/jobs", express.json(), (req, res) => {
   const newId = Math.max(...data.map((job) => job.id)) + 1;
   data.push({ ...req.body, ...{ id: String(newId) } });
