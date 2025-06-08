@@ -10,10 +10,14 @@ function JobListings({ isHome = true }: Props) {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
 
+  const apiUrl = isHome
+    ? "http://localhost:3001/jobs?limit=3"
+    : "http://localhost:3001/jobs";
+
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const res = await fetch("http://localhost:3001/jobs");
+        const res = await fetch(apiUrl);
         const data: Job[] = await res.json();
         if (isHome) {
           setJobs(data.slice(0, 3));

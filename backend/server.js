@@ -12,5 +12,10 @@ app.listen(PORT, () => {
 });
 
 app.get("/jobs", (req, res) => {
-  res.json(data);
+  const limit = req.query.limit;
+  if (limit) {
+    res.json(data.slice(0, limit));
+  } else {
+    res.json(data);
+  }
 });
