@@ -39,6 +39,7 @@ The application will start with:
 
   - React
   - Tailwindcss
+  - React Router
 
 - Backend:
   - Node.js
