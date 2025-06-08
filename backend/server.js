@@ -19,3 +19,8 @@ app.get("/jobs", (req, res) => {
     res.json(data);
   }
 });
+
+app.get("/jobs/:id", (req, res) => {
+  const id = req.params.id;
+  res.json(data.find((el) => el.id === id));
+});
