@@ -1,22 +1,49 @@
-import { useState } from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import type { JobApi } from "../components/JobListing";
 
-function AddJobPage() {
+interface Props {
+  addJobSubmit: (newJob: JobApi) => void;
+}
+
+function AddJobPage({ addJobSubmit }: Props) {
   const [title, setTitle] = useState("");
-  const [type, setType] = useState("");
+  const [type, setType] = useState("Full-Time");
   const [location, setLocation] = useState("");
   const [description, setDescription] = useState("");
-  const [salary, setSalary] = useState("");
+  const [salary, setSalary] = useState("Under $50k");
   const [companyName, setCompanyName] = useState("");
   const [companyDescription, setCompanyDescription] = useState("");
   const [contactEmail, setContactEmail] = useState("");
   const [contactPhone, setContactPhone] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const newJob: JobApi = {
+      title,
+      type,
+      location,
+      description,
+      salary,
+      company: {
+        name: companyName,
+        description: companyDescription,
+        contactEmail,
+        contactPhone,
+      },
+    };
+    addJobSubmit(newJob);
+    return navigate("/jobs");
+  };
 
   return (
     <>
       <section className="bg-indigo-50">
         <div className="container m-auto max-w-2xl py-24">
           <div className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">
-            <form>
+            <form onSubmit={handleSubmit}>
               <h2 className="text-3xl text-center font-semibold mb-6">
                 Add Job
               </h2>

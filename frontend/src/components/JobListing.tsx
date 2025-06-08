@@ -6,8 +6,7 @@ interface Props {
   job: Job;
 }
 
-export interface Job {
-  id: string;
+export interface JobApi {
   title: string;
   type: string;
   description: string;
@@ -19,6 +18,10 @@ export interface Job {
     contactEmail: string;
     contactPhone: string;
   };
+}
+
+export interface Job extends JobApi {
+  id: string;
 }
 
 function JobListing({ job }: Props) {
